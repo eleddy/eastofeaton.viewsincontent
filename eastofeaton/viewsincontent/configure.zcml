@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="eastofeaton.viewsincontent">
+    
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <include package=".browser" />
+  <include package=".content" />
+  
+  <!--<class class="collective.sponsorship.browser.listsponsorships.ListSponsorships">
+    <allow interface="eastofeaton.viewsincontent.interfaces.IContentCoreSnippit"  />
+  </class>-->
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="Browser views in archetypes content"
+      directory="profiles/default"
+      description="Create a content type that renders a view of your choosing. The idea is to tbe able to treat BrowserViews like content on the front page"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  
+
+</configure>

@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="eastofeaton.viewsincontent">
+
+  <browser:page
+        for="eastofeaton.viewsincontent.interfaces.IViewInContent"
+        name="viewincontent_view"
+        template="templates/viewincontent_view.pt"
+        permission="zope2.View"
+        />
+  
+
+</configure>
