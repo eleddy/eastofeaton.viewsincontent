@@ -9,10 +9,7 @@
 
   <include package=".browser" />
   <include package=".content" />
-  
-  <!--<class class="collective.sponsorship.browser.listsponsorships.ListSponsorships">
-    <allow interface="eastofeaton.viewsincontent.interfaces.IContentCoreSnippit"  />
-  </class>-->
+
   
   <genericsetup:registerProfile
       name="default"

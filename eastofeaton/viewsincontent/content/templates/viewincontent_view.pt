@@ -8,8 +8,8 @@
 <body>
 
 <div metal:fill-slot="content-core">
-    <tal:loop repeat="renderView  here/getRenderedView">
-        <div tal:content="structure renderView" 
+    <tal:loop repeat="snip  here/getSnippits">
+        <div tal:content="structure snip" 
             tal:on-error="string:Error rendering view!"/>
     </tal:loop>
 </div>

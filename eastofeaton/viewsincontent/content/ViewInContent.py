@@ -12,6 +12,7 @@ from zope.viewlet.interfaces import IViewlet
 from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 from eastofeaton.viewsincontent.interfaces import IContentCoreSnippit
+from lxml import etree
 
 
 ViewInContentSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
@@ -49,15 +50,27 @@ class ViewInContent(ATCTContent):
         except: 
             return None
     
-    def getRenderedView(self):
-        renderedViews = []
+    def getSnippits(self):
+        """
+        Get the views. For each view, render the content. Currently, 
+        this looks for an id of "content" and filters on that if it 
+        exists. 
+        XXX: There has to be a better way to do this
+        """
+        snippits = []
         for viewName in self.view:
             view = self.getRenderableView(viewName)
             if view:
                 view = view.__of__(self)
-                renderedViews.append(view)
+                snippit = view.render()
             
-        return renderedViews
+                root = etree.HTML(snippit)
+                contentRoot = root.xpath("//*[@id='content']")
+                if len(contentRoot):
+                    root = contentRoot[0]
+                snippits.append(etree.tostring(root, method="html"))
+            
+        return snippits
     
 
 atapi.registerType(ViewInContent, config.PROJECTNAME)
